@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+__MACOSX/
+
+# C build files
+*.o
+*.out
+*.exe
+
+# CMake
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+
+# Editors
+.vscode/
+.idea/
