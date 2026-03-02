@@ -1,21 +1,22 @@
-# ECE 4122 – Systems Programming in C
+# ECE 4122 – Systems Programming & Multithreaded Simulation
 
-C-based systems programming labs and final project completed at Georgia Institute of Technology.
+Course labs and final project completed at Georgia Institute of Technology.
 
-This repository contains a collection of lab assignments and a final project focused on low-level programming concepts, memory management, modular design, and performance-aware implementation in C.
+This repository contains systems-oriented programming assignments and a final multithreaded 3D UAV simulation implemented in C/C++.
 
 ---
 
-## Course Overview
+## Course Focus
 
-The labs and project emphasize:
+The course emphasizes:
 
-- Structured program design in C  
-- Pointer usage and memory management  
-- File I/O and data processing  
-- Modular architecture and code organization  
-- Debugging and performance optimization  
-- Working with external libraries (e.g., SFML where applicable)
+- Systems-level programming concepts  
+- Memory management and pointer usage  
+- Multithreading using `std::thread`  
+- Physics-based simulation  
+- OpenGL rendering  
+- Modular and self-documenting code design  
+- Performance-aware implementation  
 
 ---
 
@@ -32,40 +33,76 @@ Lab6/
 Project/
 ```
 
-Each lab focuses on a specific systems programming concept and builds toward more complex implementation patterns.  
-The final project integrates multiple concepts into a larger structured program.
+Each lab builds foundational systems programming skills, culminating in a full-scale simulation project.
 
 ---
 
-## Final Project
+## Final Project – GaTech Buzzy Bowl UAV Simulation
 
-The final project demonstrates application of course concepts in a complete C-based system.
+The final project implements a real-time 3D UAV halftime show simulation using multithreading and OpenGL.
 
-**Demo Video:** https://youtu.be/m0lO1hTf3j0?si=jpaUTbV32rjs4kjg
+### Overview
 
-Key aspects:
+- Simulates 15 UAVs positioned on a football field  
+- Each UAV is controlled by its own thread (15 worker threads + 1 rendering thread)  
+- Physics updates occur every 10 ms  
+- Rendering updates occur every 30 ms  
+- UAV motion governed by Newton’s Second Law:
 
-- Modular program structure  
-- Memory-aware implementation  
-- Clear separation of logic and functionality  
-- Integration of course-level systems concepts  
+  **F⃗ = m a⃗**
+
+- Gravity and applied force vectors determine acceleration  
+- UAVs ascend to a target altitude and transition to motion along a virtual 10 m radius sphere  
+- Elastic collision handling implemented between UAVs  
+
+### PID-Based Flight Control
+
+To maintain spherical flight paths, a PID (Proportional–Integral–Derivative) controller was implemented for each UAV:
+
+- Proportional term corrects instantaneous positional error  
+- Integral term reduces steady-state drift  
+- Derivative term dampens oscillations and stabilizes motion  
+- Gains tuned experimentally to balance responsiveness and stability  
+
+This allowed the UAVs to remain constrained to the surface of the sphere while maintaining realistic velocity limits.
+
+### Key Concepts Implemented
+
+- Multithreaded architecture (16 total threads)  
+- Thread-managed object state updates  
+- Kinematic equations of motion  
+- Real-time OpenGL rendering  
+- Object-oriented UAV class design  
+- PID control implementation  
+- Collision detection and velocity swapping  
+- Time-stepped simulation loop  
+
+### Demo Video
+
+https://youtu.be/m0lO1hTf3j0
 
 ---
 
-## How to Build
+## Build Instructions
 
-Most labs can be compiled using:
+This project was developed using CMake.
+
+To build:
 
 ```
-gcc main.c -o program
-./program
+mkdir build
+cd build
+cmake ..
+make
 ```
 
-Some labs may require additional libraries depending on the assignment.
+Run the executable from the build directory.
+
+Some labs may require OpenGL or SFML depending on assignment requirements.
 
 ---
 
 ## Academic Integrity Notice
 
 Coursework uploaded with instructor permission.  
-Please do not reuse this material for academic submissions.
+Please do not reuse or redistribute this material for academic submissions.
