@@ -1,6 +1,6 @@
 # ECE 4122 – Systems Programming & Multithreaded Simulation
 
-Course labs and final project completed at Georgia Institute of Technology.
+Course labs and final project completed during ECE 4122 at Georgia Institute of Technology.
 
 This repository contains systems-oriented programming assignments and a final multithreaded 3D UAV simulation implemented in C/C++.
 
@@ -49,7 +49,7 @@ The final project implements a real-time 3D UAV halftime show simulation using m
 - Rendering updates occur every 30 ms  
 - UAV motion governed by Newton’s Second Law:
 
-  **F⃗ = m a⃗**
+  **F = m a**
 
 - Gravity and applied force vectors determine acceleration  
 - UAVs ascend to a target altitude and transition to motion along a virtual 10 m radius sphere  
